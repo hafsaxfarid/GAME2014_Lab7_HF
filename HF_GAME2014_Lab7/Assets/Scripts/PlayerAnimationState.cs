@@ -8,5 +8,6 @@ public enum PlayerAnimationState
     IDLE,
     RUN,
     JUMP,
+    HURT,
     NUM_OF_AMIMATION_STATE
 }

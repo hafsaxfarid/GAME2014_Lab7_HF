@@ -11,7 +11,8 @@ public class PlayerBehaviour : MonoBehaviour
     public Transform groundOrigin;
     public float groundRadius;
     public LayerMask groundLayerMask;
-    
+    public Transform spawnPoint;
+
     [Range(0.1f, 0.9f)]
     public float airControlFactor;
 
@@ -95,6 +96,10 @@ public class PlayerBehaviour : MonoBehaviour
         {
             transform.SetParent(other.transform);
         }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            transform.position = spawnPoint.position;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -110,7 +115,6 @@ public class PlayerBehaviour : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(groundOrigin.position, groundRadius, Vector2.down, groundRadius, groundLayerMask);
         isGrounded = (hit) ? true : false;
     }
-
 
     private float FlipAnimation(float x)
     {

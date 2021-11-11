@@ -89,6 +89,22 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(other.transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(null);
+        }
+    }
+
     public void CheckIsGrounded()
     {
         RaycastHit2D hit = Physics2D.CircleCast(groundOrigin.position, groundRadius, Vector2.down, groundRadius, groundLayerMask);

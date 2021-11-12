@@ -12,9 +12,5 @@ public class DeathPlaneController : MonoBehaviour
         {
             other.transform.position = spawnPoint.position;
         }
-        else
-        {
-            other.gameObject.SetActive(false);
-        }
     }
 }

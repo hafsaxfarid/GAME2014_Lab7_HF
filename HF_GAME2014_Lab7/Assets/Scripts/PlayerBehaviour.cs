@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Transform groundOrigin;
     public float groundRadius;
     public LayerMask groundLayerMask;
+    public LayerMask wallLayerMask;
     public Transform spawnPoint;
 
     [Range(0.1f, 0.9f)]
@@ -33,6 +34,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Move();
         CheckIsGrounded();
+        WallHit();
     }
 
     private void Move()
@@ -114,6 +116,15 @@ public class PlayerBehaviour : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.CircleCast(groundOrigin.position, groundRadius, Vector2.down, groundRadius, groundLayerMask);
         isGrounded = (hit) ? true : false;
+    }
+    public void WallHit()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(groundOrigin.position, groundRadius, Vector2.down, groundRadius, wallLayerMask);
+        
+        if(hit)
+        {
+            isGrounded = true;
+        }
     }
 
     private float FlipAnimation(float x)
